@@ -1,0 +1,120 @@
+body {
+  background-color: #fff;
+  font-weight: 400;
+  color: rgb(36, 30, 18);
+  line-height: 1.6;
+}
+
+* {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
+}
+
+.btn {
+  @apply font-normal py-2 px-4 rounded-xl;
+}
+
+.bg-blue-800 {
+  background: rgb(0, 76, 129);
+}
+
+.view-modal,
+.popup {
+  position: absolute;
+  left: 50%;
+}
+.view-modal {
+  top: 50%;
+  color: #7d2ae8;
+  font-size: 18px;
+  padding: 10px 25px;
+  background: #fff;
+  transform: translate(-50%, -50%);
+}
+.popup {
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  top: -150%;
+  max-width: 380px;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+  transform: translate(-50%, -50%) scale(1.2);
+  transition: top 0s 0.2s ease-in-out, opacity 0.2s 0s ease-in-out,
+    transform 0.2s 0s ease-in-out;
+}
+.popup.show {
+  top: 50%;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+  transition: top 0s 0s ease-in-out, opacity 0.2s 0s ease-in-out,
+    transform 0.2s 0s ease-in-out;
+}
+.popup :is(header, .icons, .field) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.popup header {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ebedf9;
+}
+.popupheader span {
+  font-size: 21px;
+  font-weight: 600;
+}
+.popup header .close,
+.icons a {
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
+.popup header .close {
+  color: #878787;
+  font-size: 17px;
+  background: #f2f3fb;
+  height: 33px;
+  width: 33px;
+  cursor: pointer;
+}
+.popup header .close:hover {
+  background: #ebedf9;
+}
+.popup .content {
+  margin: 20px 0;
+}
+.popup .icons {
+  margin: 15px 0 20px 0;
+}
+.content p {
+  font-size: 16px;
+}
+.content .icons a {
+  height: 50px;
+  width: 50px;
+  font-size: 20px;
+  text-decoration: none;
+}
+.content .field {
+  margin: 12px 0 -5px 0;
+  height: 45px;
+  border-radius: 4px;
+  border: 1px solid #e1e1e1;
+}
+.field.active {
+  border-color: #7d2ae8;
+}
+.field i {
+  width: 50px;
+  font-size: 18px;
+  text-align: center;
+}
+.field.active i {
+  color: #7d2ae8;
+}
