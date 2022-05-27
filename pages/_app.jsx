@@ -2,8 +2,6 @@ import 'tailwindcss/tailwind.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '../global.css';
 
-import { useStore } from '../store';
-import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import { Web3ReactProvider } from '@web3-react/core';
 import dynamic from 'next/dynamic';
@@ -20,19 +18,15 @@ const AuthWrapper = dynamic(() => import('../containers/auth/authWrapper'), {
 });
 
 function MyApp({ Component, pageProps }) {
-  const store = useStore(pageProps.initialReduxState);
-
   return (
     <>
-      <Provider store={store}>
-        <Web3ReactProvider getLibrary={getLibrary}>
-          <Web3ReactProviderDefault getLibrary={getLibrary}>
-            <AuthWrapper>
-              <Component {...pageProps} />
-            </AuthWrapper>
-          </Web3ReactProviderDefault>
-        </Web3ReactProvider>
-      </Provider>
+      <Web3ReactProvider getLibrary={getLibrary}>
+        <Web3ReactProviderDefault getLibrary={getLibrary}>
+          <AuthWrapper>
+            <Component {...pageProps} />
+          </AuthWrapper>
+        </Web3ReactProviderDefault>
+      </Web3ReactProvider>
       <ToastContainer
         position="top-right"
         autoClose={5000}
