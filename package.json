@@ -1,10 +1,14 @@
 {
-  "name": "nextjs-tailwind-web3-starter",
+  "name": "premarket",
   "version": "1.0.0",
   "author": "Rahul Bansal <rbbansal558@gmail.com>",
   "private": false,
   "license": "MIT",
-  "homepage": "https://github.com/RahulBansal123/Next-tailwind-web3",
+  "engines": {
+    "npm": ">=8.3.0",
+    "node": "=16.14.0"
+  },
+  "homepage": "https://github.com/RahulBansal123/PreMarket",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
