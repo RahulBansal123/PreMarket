@@ -1,20 +1,11 @@
 import React, { useState } from 'react';
 import Modal from '../../utils/modal';
 import { isMobile } from 'react-device-detect';
-import styled from 'styled-components';
 
 import dynamic from 'next/dynamic';
 const WalletModal = dynamic(() => import('./walletModal'), {
   ssr: false,
 });
-
-const ModalContent = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px 1.6rem 0 1.6rem;
-`;
 
 const Auth = () => {
   const [isOpen, toggle] = useState(false);
@@ -68,13 +59,13 @@ const Auth = () => {
         height={isMobile ? 60 : 80}
         title="Connect to a wallet"
       >
-        <ModalContent className="flex-column">
+        <div className="w-full flex flex-column justify-center items-center pt-5 px-6">
           <WalletModal
             isOpen={isOpen}
             onClose={() => toggle(false)}
             config={config}
           />
-        </ModalContent>
+        </div>
       </Modal>
     </div>
   );
