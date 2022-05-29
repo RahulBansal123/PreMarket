@@ -2,7 +2,7 @@ import { X, Facebook, Twitter, Instagram, Linkedin } from 'react-feather';
 
 const Modal = ({ isOpen, id, onClose }) => {
   return (
-    <div class={`popup ${isOpen ? 'show' : ''}`}>
+    <div class={`popup ${isOpen ? 'show' : ''}`} style={{ zIndex: 99999 }}>
       <header>
         <span style={{ fontWeight: 600 }}>Share</span>
         <div class="close" onClick={onClose}>
@@ -13,25 +13,25 @@ const Modal = ({ isOpen, id, onClose }) => {
         <p>Share this market group's link via</p>
         <ul class="icons">
           <a
-            href={`https://www.facebook.com/sharer.php?u=${process.env.REACT_APP_HOST_URL}/${id}`}
+            href={`https://www.facebook.com/sharer.php?u=${process.env.NEXT_PUBLIC_HOST_URL}/${id}`}
             className="border-2 border-[#b7d4fb] hover:scale-110"
           >
             <Facebook className="stroke-2 stroke-[#1877F2] cursor-pointer" />
           </a>
           <a
-            href={`https://twitter.com/intent/tweet?url=${process.env.REACT_APP_HOST_URL}/${id}&text=Check+this+out&hashtags=PreMarket`}
+            href={`https://twitter.com/intent/tweet?url=${process.env.NEXT_PUBLIC_HOST_URL}/${id}&text=Check+this+out&hashtags=PreMarket`}
             className="border-2 border-[#b6e7fc] hover:scale-110"
           >
             <Twitter className="stroke-2 stroke-[#46C1F6] cursor-pointer" />
           </a>
           <a
-            href={`https://www.facebook.com/sharer.php?u=${process.env.REACT_APP_HOST_URL}/${id}`}
+            href={`https://www.facebook.com/sharer.php?u=${process.env.NEXT_PUBLIC_HOST_URL}/${id}`}
             className="border-2 border-[#f5bccf] hover:scale-110"
           >
             <Instagram className="stroke-2 stroke-[#e1306c] cursor-pointer" />
           </a>
           <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${process.env.REACT_APP_HOST_URL}/${id}`}
+            href={`https://www.linkedin.com/sharing/share-offsite/?url=${process.env.NEXT_PUBLIC_HOST_URL}/${id}`}
             className="border-2 border-[#b3e6ff] hover:scale-110"
           >
             <Linkedin className="stroke-2 stroke-[#0088cc] cursor-pointer" />
@@ -43,14 +43,14 @@ const Modal = ({ isOpen, id, onClose }) => {
           <input
             type="text"
             readonly
-            value={process.env.REACT_APP_HOST_URL + '/' + id}
+            value={process.env.NEXT_PUBLIC_HOST_URL + '/' + id}
             className="w-full h-full"
           />
           <button
             className="w-1/3 h-full bg-blue-100 text-blue-500 hover:text-blue-600"
             onClick={() =>
               navigator.clipboard.writeText(
-                process.env.REACT_APP_HOST_URL + '/' + id
+                process.env.NEXT_PUBLIC_HOST_URL + '/' + id
               )
             }
           >
