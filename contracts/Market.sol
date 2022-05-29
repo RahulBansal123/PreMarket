@@ -15,7 +15,7 @@ contract Market is Ownable {
         uint256 endTimestamp;
         uint256 totalUpValue;
         uint256 totalDownValue;
-        uint256 isCompleted; // 0 - not completed, 1 - completed, Since boolean are more expensive than uint256
+        uint256 resolved; // 0: not resolved, 1: resolved
     }
 
     // Struct for storing amount invested
@@ -60,11 +60,6 @@ contract Market is Ownable {
         unchecked { return x + 1; }
     }
 
-    // Giving rewards to the user
-    function giveReward(address payable _address, uint256 _value) public payable {
-        ERC20(preToken).transfer(payable(_address), _value);
-    }
-
     // Return the owner
     function isOwner() public view returns (bool _isOwner) {
         if (msg.sender == owner()) return true;
@@ -89,7 +84,7 @@ contract Market is Ownable {
             endTimestamp: _endTimestamp,
             totalUpValue: 0,
             totalDownValue: 0,
-            isCompleted: 0
+            resolved: 0
         });
 
         emit InformationAdded(
@@ -99,36 +94,26 @@ contract Market is Ownable {
         );
     }
 
-    // Function for upvoting a information market group
-    function upvote(uint256 _id) isValidId(_id) public payable {
-        Information memory information = informations[_id];
-        ERC20(preToken).transferFrom(payable(msg.sender), address(this), msg.value);
+    // Function for voting a information market group
+    function vote(uint256 _id, uint256 _value ,bool _isUpVote) public payable {
+        Information storage information = informations[_id];
+        ERC20(preToken).transferFrom(payable(msg.sender), address(this), _value);
 
         Amount memory valueCreated = Amount(
             msg.sender,
-            msg.value,
+            _value,
             block.timestamp
         );
 
-        information.totalUpValue += msg.value;
-        upVotes[_id].push(valueCreated);
+        if (_isUpVote) {
+            information.totalUpValue += _value;
+            upVotes[_id].push(valueCreated);
+        } else {
+            information.totalDownValue += _value;
+            downVotes[_id].push(valueCreated);
+        }
     }
 
-    // Function for downvoting a information market group
-    function downvote(uint256 _id) isValidId(_id) public payable {
-        Information memory information = informations[_id];
-
-        ERC20(preToken).transferFrom(payable(msg.sender), address(this), msg.value);
-
-        Amount memory valueCreated = Amount(
-            msg.sender,
-            msg.value,
-            block.timestamp
-        );
-
-        information.totalDownValue += msg.value;
-        downVotes[_id].push(valueCreated);
-    }
 
     // Function for getting information market
     function getInformation(uint256 _id)
@@ -145,7 +130,7 @@ contract Market is Ownable {
         public
         payable onlyOwner isValidId(_id)
     {
-        Information memory information = informations[_id];
+        Information storage information = informations[_id];
         uint256 totalUpValue = information.totalUpValue;
         uint256 totalDownValue = information.totalDownValue;
 
@@ -154,9 +139,9 @@ contract Market is Ownable {
             for (uint256 i = 0; i < totalUpvotes;  i = unsafe_inc(i)) {
                 uint256 investedAmount = upVotes[_id][i].value;
 
-                uint256 extraAmount = (totalDownValue * investedAmount) / totalDownValue;
+                uint256 extraAmount = (totalDownValue * investedAmount) / totalUpValue;
 
-                giveReward(payable(upVotes[_id][i].user), investedAmount + extraAmount);
+                ERC20(preToken).transfer(payable(upVotes[_id][i].user), investedAmount + extraAmount);
             }
         } else {
             uint256 totalDownvotes = downVotes[_id].length;
@@ -165,9 +150,10 @@ contract Market is Ownable {
 
                 uint256 extraAmount = (totalUpValue * investedAmount) / totalDownValue;
 
-                giveReward(payable(downVotes[_id][i].user), investedAmount + extraAmount);
+                ERC20(preToken).transfer(payable(downVotes[_id][i].user), investedAmount + extraAmount);
             }
         }
-        information.isCompleted = 1;
+
+        information.resolved = 1;
     }
 }

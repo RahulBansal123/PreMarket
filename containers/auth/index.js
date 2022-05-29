@@ -43,8 +43,8 @@ const Auth = () => {
               <img
                 src="/assets/images/logo.png"
                 alt="PreMarket"
-                width="60%"
-                className="mx-auto hover:scale-125 transition-all duration-500"
+                width="100%"
+                className="mx-auto hover:scale-110 transition-all duration-500"
               />
             </div>
             <div className="text-center my-5 text-base">
@@ -52,7 +52,7 @@ const Auth = () => {
             </div>
             <div className="flex">
               <button
-                className="btn bg-blue-100 text-blue-400 w-full hover:text-blue-500"
+                className="btn bg-[#1e96a6] text-white w-full hover:shadow-md hover:bg-[#1e96a6c4]"
                 onClick={handleClick}
               >
                 Connect to a wallet

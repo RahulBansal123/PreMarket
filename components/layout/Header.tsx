@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useWeb3React } from '@web3-react/core';
 
-const Header = () => {
+const Header = ({ isOwner }) => {
   const router = useRouter();
   const { account } = useWeb3React();
 
@@ -20,6 +20,14 @@ const Header = () => {
           <span className="overflow-ellipsis overflow-hidden">
             {account?.slice(0, 12)}...
           </span>
+          {isOwner && (
+            <p
+              className="border px-3 rounded-xl hover:text-[#1e96a6] hover:bg-white"
+              onClick={() => router.push('/admin')}
+            >
+              Admin Dashboard
+            </p>
+          )}
         </div>
       </div>
     </div>
