@@ -61,7 +61,7 @@ Contracts are deployed at: <br/>
 <b>Token</b>: [0xfbd9998F86EFA92916396540eDC43b952A2cfB2F](https://mumbai.polygonscan.com/address/0xfbd9998F86EFA92916396540eDC43b952A2cfB2F)<br/>
 <b>Market</b>: [0x2468437A3e695A6Ef5D03eF8190cBd9d49f78033](https://mumbai.polygonscan.com/address/0x2468437A3e695A6Ef5D03eF8190cBd9d49f78033#code)
 
-Link to video: []()
+Link to video: [https://youtu.be/t1PiaRYEGyo](https://youtu.be/t1PiaRYEGyo)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
