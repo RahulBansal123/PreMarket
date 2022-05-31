@@ -13,7 +13,7 @@
 PreMarket is the most trusted decentralized information market platform where you can bet on highly-debated topics and earn for being right.
     <br />
     <br />
-    <a href="https://lingering-lake-2927.on.fleek.co/">View Demo</a>
+    <a href="https://premarket.on.fleek.co/">View Demo</a>
     ·
     <a href="https://github.com/RahulBansal123/PreMarket/issues">Report Bug</a>
     ·
