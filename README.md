@@ -49,6 +49,8 @@ PreMarket is the most trusted decentralized information market platform where yo
 
 ## About The Project
 
+#### Make sure you are on Polygon testnet for the DApp to work correctly.
+
 PreMarket is the most trusted decentralized information market platform where you can bet on highly-debated topics and earn for being right.
 
 Users can vote on highly debated topics with their PRE tokens and visualze the other people's bet from the well-designed graphs, market data which includes total volume of the market, total Upvotes volume, total downvotes value etc.
